@@ -7,10 +7,36 @@ pub mod simple_storage {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
+        let storage = &mut ctx.accounts.storage;
+        storage.data = String::from("Hello, Solana!");
+        msg!("Account initialized with: {}", storage.data);
+        Ok(())
+    }
+
+    pub fn update(ctx: Context<Update>, new_data: String) -> Result<()> {
+        let storage = &mut ctx.accounts.storage;
+        msg!("Updating storage from '{}' to '{}'", storage.data, new_data);
+        storage.data = new_data;
         Ok(())
     }
 }
 
 #[derive(Accounts)]
-pub struct Initialize {}
+pub struct Initialize<'info> {
+    #[account(init, payer = user, space = 8 + 100)]
+    pub storage: Account<'info, Storage>,
+    #[account(mut)]
+    pub user: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct Update<'info> {
+    #[account(mut)]
+    pub storage: Account<'info, Storage>,
+}
+
+#[account]
+pub struct Storage {
+    pub data: String,
+}
