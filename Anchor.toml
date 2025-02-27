@@ -4,6 +4,9 @@
 resolution = true
 skip-lint = false
 
+[programs.devnet]
+simple_storage = "NgoV63pHvHu6AE8oQ4XzRMt4A4DGXmuEF7SY1RxQf9W"
+
 [programs.localnet]
 simple_storage = "NgoV63pHvHu6AE8oQ4XzRMt4A4DGXmuEF7SY1RxQf9W"
 
@@ -11,7 +14,7 @@ simple_storage = "NgoV63pHvHu6AE8oQ4XzRMt4A4DGXmuEF7SY1RxQf9W"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Devnet"
+cluster = "Localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
