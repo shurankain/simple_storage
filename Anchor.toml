@@ -14,7 +14,7 @@ simple_storage = "NgoV63pHvHu6AE8oQ4XzRMt4A4DGXmuEF7SY1RxQf9W"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "https://api.devnet.solana.com "
 wallet = "~/.config/solana/id.json"
 
 [scripts]
